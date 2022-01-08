@@ -7,4 +7,7 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_DATABASE="pass123"
+      - POSTGRES_HOST:localhost
+      - POSTGRES_NAME:postgres
+      - POSTGRES_PASSWORD:pass123
+      - POSTGRES_PORT:5432
