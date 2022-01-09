@@ -23,14 +23,13 @@ export class CoffeesController {
   @Get(Constants.Routes.Flavors)
   @ApiOperation({ summary: 'Retrieves all coffees' })
   findAll(@Query() paginationQuery: { offset: number; limit: number }) {
-    const { offset, limit } = paginationQuery || {};
-    return this.coffeesService.findAll();
+    return this.coffeesService.findAll(paginationQuery);
   }
 
   @Get(':id')
   @ApiOperation({ summary: 'gets one coffee by id' })
-  findOne(@Param('id') id: string) {
-    const coffee = this.coffeesService.findOne(id);
+  findOne(@Param('id') id: number) {
+    const coffee = this.coffeesService.findOne('' + id);
     if (!coffee) {
       throw new NotFoundException(`Coffee #${id} not found`);
     }
@@ -45,13 +44,13 @@ export class CoffeesController {
 
   @Patch(':id')
   @ApiOperation({ summary: 'Updates a coffee by id and new object' })
-  update(@Param('id') id: string, @Body() dto: UpdateCoffeeDto) {
-    return this.coffeesService.update(id, dto);
+  update(@Param('id') id: number, @Body() dto: UpdateCoffeeDto) {
+    return this.coffeesService.update('' + id, dto);
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Removes a coffee by id' })
-  delete(@Param('id') id: string) {
-    return this.coffeesService.delete(id);
+  delete(@Param('id') id: number) {
+    return this.coffeesService.delete('' + id);
   }
 }
