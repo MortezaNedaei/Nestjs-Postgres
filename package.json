@@ -20,6 +20,7 @@
     "generate-class": "nest g class  --no-spec",
     "docker-compose": "docker-compose up -d",
     "docker-compose-build": "docker-compose up --build",
+    "create-migration": "npx typeorm migration:create -n CoffeeRefactor",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
