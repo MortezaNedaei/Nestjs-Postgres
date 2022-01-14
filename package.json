@@ -18,6 +18,7 @@
     "generate-service": "nest g service --no-spec",
     "generate-middleware": "nest g middleware --no-spec",
     "generate-class": "nest g class  --no-spec",
+    "generate-guard": "nest g guard  --no-spec",
     "docker-compose": "docker-compose up -d",
     "docker-compose-build": "docker-compose up --build",
     "create-auto-migration": "npx typeorm migration:generate -n SchemaSync",
