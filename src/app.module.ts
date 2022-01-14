@@ -10,9 +10,10 @@ import { LoggerMiddleware } from './middleware/logger.middleware';
 import { Constants } from './constants/Constants';
 import { CoffeesModule } from './coffees/coffees.module';
 import { TypeormModule } from './typeorm/typeorm.module';
+import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 
 @Module({
-  imports: [CoffeesModule, TypeormModule],
+  imports: [CoffeesModule, TypeormModule, CoffeeRatingModule],
   controllers: [AppController],
   providers: [AppService],
 })
