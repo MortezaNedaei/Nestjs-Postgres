@@ -11,9 +11,10 @@ import { Constants } from './constants/Constants';
 import { CoffeesModule } from './coffees/coffees.module';
 import { TypeormModule } from './typeorm/typeorm.module';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
-  imports: [CoffeesModule, TypeormModule, CoffeeRatingModule],
+  imports: [CoffeesModule, TypeormModule, CoffeeRatingModule, DatabaseModule],
   controllers: [AppController],
   providers: [AppService],
 })
