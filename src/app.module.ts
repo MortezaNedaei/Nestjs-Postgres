@@ -9,12 +9,28 @@ import { AppService } from './app.service';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { Constants } from './constants/Constants';
 import { CoffeesModule } from './coffees/coffees.module';
-import { TypeormModule } from './typeorm/typeorm.module';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { DatabaseModule } from './database/database.module';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [CoffeesModule, TypeormModule, CoffeeRatingModule, DatabaseModule],
+  imports: [
+    ConfigModule.forRoot(),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.DATABASE_HOST,
+      port: +process.env.DATABASE_PORT,
+      username: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
+    CoffeesModule,
+    CoffeeRatingModule,
+    DatabaseModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
