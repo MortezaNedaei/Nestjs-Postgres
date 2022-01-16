@@ -22,7 +22,7 @@ import { REQUEST } from '@nestjs/core';
 export class CoffeesController {
   constructor(
     private readonly coffeesService: CoffeesService,
-    @Inject(REQUEST) private readonly request: any, // can be used when di scope is Scope.REQUEST
+    @Inject(REQUEST) private readonly request: any, // request: Request // can be used when di scope is Scope.REQUEST
   ) {}
 
   @Get(Constants.Routes.Flavors)
