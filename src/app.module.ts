@@ -41,7 +41,12 @@ import appConfig from './config/app.config';
     DatabaseModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    // use building blocks: APP_PIPE | APP_GUARD | APP_INTERCEPTOR | APP_FILTER globally
+    // another option is using directly inside main.ts: app.useGlobalPipes() | app.useGlobalGuards , ...
+    // { provide: APP_PIPE, useClass: ValidationPipe }
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
