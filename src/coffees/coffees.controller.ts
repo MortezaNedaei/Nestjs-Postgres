@@ -20,7 +20,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { REQUEST } from '@nestjs/core';
 
 @ApiTags(Constants.Routes.Coffees)
-@UsePipes(ValidationPipe) // or new ValidationPipe()
+// @UsePipes(ValidationPipe) // or new ValidationPipe()
 @Controller(Constants.Routes.Coffees)
 export class CoffeesController {
   constructor(
@@ -28,6 +28,7 @@ export class CoffeesController {
     @Inject(REQUEST) private readonly request: any, // request: Request // can be used when di scope is Scope.REQUEST
   ) {}
 
+  @UsePipes(ValidationPipe)
   @Get(Constants.Routes.Flavors)
   @ApiOperation({ summary: 'Retrieves all coffees' })
   findAll(@Query() paginationQuery: { offset: number; limit: number }) {
