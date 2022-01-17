@@ -14,6 +14,7 @@ import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModuleValidationSchema } from './utils/validationSchema';
+import appConfig from './config/app.config';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { ConfigModuleValidationSchema } from './utils/validationSchema';
       }),
     }),
     ConfigModule.forRoot({
+      load: [appConfig],
       validationSchema: ConfigModuleValidationSchema,
       // use in production
       // ignoreEnvFile: true,
