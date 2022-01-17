@@ -9,6 +9,8 @@ import {
   Patch,
   Post,
   Query,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { Constants } from '../constants/Constants';
 import { CoffeesService } from './coffees.service';
@@ -18,6 +20,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { REQUEST } from '@nestjs/core';
 
 @ApiTags(Constants.Routes.Coffees)
+@UsePipes(ValidationPipe) // or new ValidationPipe()
 @Controller(Constants.Routes.Coffees)
 export class CoffeesController {
   constructor(
