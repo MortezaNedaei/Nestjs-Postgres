@@ -9,7 +9,6 @@ import {
   Patch,
   Post,
   Query,
-  UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
 import { Constants } from '../constants/Constants';
@@ -18,6 +17,7 @@ import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { REQUEST } from '@nestjs/core';
+import { Public } from '../common/decorators/public.decorator';
 
 @ApiTags(Constants.Routes.Coffees)
 // @UsePipes(ValidationPipe) // or new ValidationPipe()
@@ -30,6 +30,7 @@ export class CoffeesController {
 
   // @UsePipes(ValidationPipe)
   @Get(Constants.Routes.Flavors)
+  @Public()
   @ApiOperation({ summary: 'Retrieves all coffees' })
   findAll(@Query() paginationQuery: { offset: number; limit: number }) {
     return this.coffeesService.findAll(paginationQuery);
