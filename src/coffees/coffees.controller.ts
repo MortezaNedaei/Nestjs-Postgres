@@ -28,7 +28,7 @@ export class CoffeesController {
     @Inject(REQUEST) private readonly request: any, // request: Request // can be used when di scope is Scope.REQUEST
   ) {}
 
-  @UsePipes(ValidationPipe)
+  // @UsePipes(ValidationPipe)
   @Get(Constants.Routes.Flavors)
   @ApiOperation({ summary: 'Retrieves all coffees' })
   findAll(@Query() paginationQuery: { offset: number; limit: number }) {
@@ -53,7 +53,7 @@ export class CoffeesController {
 
   @Patch(':id')
   @ApiOperation({ summary: 'Updates a coffee by id and new object' })
-  update(@Param('id') id: number, @Body() dto: UpdateCoffeeDto) {
+  update(@Param('id') id: number, @Body(ValidationPipe) dto: UpdateCoffeeDto) {
     return this.coffeesService.update('' + id, dto);
   }
 
