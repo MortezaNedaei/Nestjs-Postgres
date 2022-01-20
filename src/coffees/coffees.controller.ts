@@ -18,6 +18,7 @@ import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { REQUEST } from '@nestjs/core';
 import { Public } from '../common/decorators/public.decorator';
+import { ParseIntPipe } from "../common/pipes/parse-int.pipe";
 
 @ApiTags(Constants.Routes.Coffees)
 // @UsePipes(ValidationPipe) // or new ValidationPipe()
@@ -38,7 +39,8 @@ export class CoffeesController {
 
   @Get(':id')
   @ApiOperation({ summary: 'gets one coffee by id' })
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    console.log(id);
     const coffee = this.coffeesService.findOne('' + id);
     if (!coffee) {
       throw new NotFoundException(`Coffee #${id} not found`);
