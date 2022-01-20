@@ -18,7 +18,8 @@ import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { REQUEST } from '@nestjs/core';
 import { Public } from '../common/decorators/public.decorator';
-import { ParseIntPipe } from "../common/pipes/parse-int.pipe";
+import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
+import { Protocol } from '../common/decorators/protocol.decorator';
 
 @ApiTags(Constants.Routes.Coffees)
 // @UsePipes(ValidationPipe) // or new ValidationPipe()
@@ -33,7 +34,12 @@ export class CoffeesController {
   @Get(Constants.Routes.Flavors)
   @Public()
   @ApiOperation({ summary: 'Retrieves all coffees' })
-  findAll(@Query() paginationQuery: { offset: number; limit: number }) {
+  findAll(
+    @Protocol('https') protocol: string,
+    // @Protocol() protocol: string,
+    @Query() paginationQuery: { offset: number; limit: number },
+  ) {
+    console.log(protocol); //http
     return this.coffeesService.findAll(paginationQuery);
   }
 
